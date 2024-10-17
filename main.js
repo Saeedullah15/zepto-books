@@ -5,13 +5,15 @@ function loadBookData() {
         .then(data => {
             displayBookData(data.results);
             search(data.results);
+            filter(data.results);
         })
 }
 loadBookData();
 
 // displaying books
 function displayBookData(bookData) {
-    console.log(bookData);
+    // console.log(bookData, bookData.length);
+
     const booksContainer = document.getElementById("booksContainer");
 
     // clearing the container holding previous data
@@ -40,12 +42,16 @@ function displayBookData(bookData) {
         `;
 
         booksContainer.appendChild(bookDiv);
-    })
+    });
+
+    // showing book length
+    let bookLength = document.getElementById("bookLength");
+    bookLength.innerText = bookData.length;
 }
 
 // search feature
 function search(bookData) {
-    console.log(bookData);
+    // console.log(bookData);
 
     document.getElementById('search-bar').addEventListener("input", function () {
         const searchTerm = this.value.toLowerCase();
@@ -54,3 +60,19 @@ function search(bookData) {
     });
 }
 
+// dropdown filter feature
+function filter(bookData) {
+    // console.log(bookData);
+
+    document.getElementById('genre-filter').addEventListener('change', function () {
+        const selectedGenre = this.value;
+
+        if (selectedGenre === 'all') {
+            displayBookData(bookData);
+        } else {
+            const filteredBooks = bookData.filter(book => book.bookshelves.includes(selectedGenre));
+            displayBookData(filteredBooks);
+        }
+    });
+
+}

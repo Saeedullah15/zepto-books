@@ -19,12 +19,39 @@
 
         <!-- search bar -->
         <input type="text" id="search-bar" placeholder="Search by title">
+
+        <!-- dropdown filter -->
+        <select id="genre-filter">
+            <option value="all">All Genres</option>
+            <option value="Browsing: Fiction">Fiction</option>
+            <option value="Browsing: Science-Fiction & Fantasy">Science-Fiction & Fantasy</option>
+            <option value="Gothic Fiction">Gothic Fiction</option>
+            <option value="Browsing: Literature">Literature</option>
+            <option value="Browsing: Poetry">Poetry</option>
+            <option value="Movie Books">Movie Books</option>
+            <option value="Browsing: Culture/Civilization/Society">Culture/Civilization/Society</option>
+            <option value="Browsing: Gender & Sexuality Studies">Gender & Sexuality Studies</option>
+            <option value="Best Books Ever Listings">Best Books Ever Listings</option>
+            <option value="Harvard Classics">Harvard Classics</option>
+            <option value="Browsing: Humour">Humour</option>
+            <option value="Browsing: Travel & Geography">Travel & Geography</option>
+            <option value="Browsing: Children & Young Adult Reading">Children & Young Adult Reading</option>
+            <option value="Banned Books from Anne Haight's list">Banned Books from Anne Haight's list</option>
+            <option value="Browsing: Biographies">Biography</option>
+            <option value="Browsing: Music">Music</option>
+            <option value="Historical Fiction">Historical Fiction</option>
+            <option value="Browsing: Teaching & Education">Teaching & Education</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Horror">Horror</option>
+            <option value="Browsing: Politics">Politics</option>
+            <option value="Browsing: Psychiatry/Psychology">Psychiatry/Psychology</option>
+        </select>
     </header>
 
     <main>
         <!-- list of books section -->
         <section>
-            <h1>Books List</h1>
+            <h1>Books List: <span id="bookLength">loading...</span></h1>
             <div id="booksContainer"></div>
         </section>
     </main>
