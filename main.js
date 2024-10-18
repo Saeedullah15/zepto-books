@@ -9,7 +9,6 @@ function loadBookData() {
             displayBookData(data.results);
             search(data.results);
             filter(data.results);
-            displayWishlistBooks(data.results);
             displayPaginatedBooks(data.results, currentPage);
             setupPagination(data.results);
         })
@@ -18,7 +17,6 @@ loadBookData();
 
 // displaying books
 function displayBookData(bookData) {
-    // console.log(bookData, bookData.length);
     const booksContainer = document.getElementById("booksContainer");
 
     // clearing the container holding previous data
@@ -57,7 +55,6 @@ function displayBookData(bookData) {
 
 // search feature
 function search(bookData) {
-    // console.log(bookData);
     document.getElementById('search-bar').addEventListener("input", function () {
         const searchTerm = this.value.toLowerCase();
         const filteredBooks = bookData.filter(book => book.title.toLowerCase().includes(searchTerm));
@@ -67,7 +64,6 @@ function search(bookData) {
 
 // dropdown filter feature
 function filter(bookData) {
-    // console.log(bookData);
     document.getElementById('genre-filter').addEventListener('change', function () {
         const selectedGenre = this.value;
 
@@ -114,22 +110,6 @@ document.getElementById('booksContainer').addEventListener('click', function (e)
     }
 });
 
-// display wishlist books
-function displayWishlistBooks(bookData) {
-    document.getElementById('wishlist-link').addEventListener('click', function () {
-        const wishlistBooks = bookData.filter(book => wishlist.includes(book.id.toString()));
-        displayBookData(wishlistBooks);
-
-        // hiding searchbar and dropdown
-        const searchBar = document.getElementById("search-bar");
-        const genreFilter = document.getElementById("genre-filter");
-        const pagination = document.getElementById("pagination");
-        searchBar.style.display = "none";
-        genreFilter.style.display = "none";
-        pagination.style.display = "none";
-    });
-}
-
 // pagination feature
 function displayPaginatedBooks(bookData, currentPage) {
     const start = (currentPage - 1) * booksPerPage;
@@ -140,7 +120,7 @@ function displayPaginatedBooks(bookData, currentPage) {
 function setupPagination(bookData) {
     const totalPages = Math.ceil(bookData.length / booksPerPage);
     const pagination = document.getElementById('pagination');
-    pagination.innerHTML = ''; // Clear previous pagination
+    pagination.innerHTML = '';
 
     for (let i = 1; i <= totalPages; i++) {
         const pageBtn = document.createElement('button');
