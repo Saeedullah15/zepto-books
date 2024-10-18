@@ -6,6 +6,7 @@ function loadBookData() {
             displayBookData(data.results);
             search(data.results);
             filter(data.results);
+            displayWishlistBooks(data.results);
         })
 }
 loadBookData();
@@ -13,7 +14,6 @@ loadBookData();
 // displaying books
 function displayBookData(bookData) {
     // console.log(bookData, bookData.length);
-
     const booksContainer = document.getElementById("booksContainer");
 
     // clearing the container holding previous data
@@ -39,8 +39,8 @@ function displayBookData(bookData) {
             <p>Genre: ${genreList}</p>
             <hr>
             <p>Id: ${book.id}</p>
+            <button class="wishlist-btn" data-id="${book.id}">❤</button>
         `;
-
         booksContainer.appendChild(bookDiv);
     });
 
@@ -75,4 +75,51 @@ function filter(bookData) {
         }
     });
 
+}
+
+// wishlist feature with local-storage
+let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+// Function to add/remove book from wishlist
+function toggleWishlist(bookId) {
+    if (wishlist.includes(bookId)) {
+        wishlist = wishlist.filter(id => id !== bookId);
+    } else {
+        wishlist.push(bookId);
+    }
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    updateWishlistIcons();
+}
+
+// Update the heart icon based on wishlist status
+function updateWishlistIcons() {
+    document.querySelectorAll('.wishlist-btn').forEach(button => {
+        const bookId = button.getAttribute('data-id');
+        if (wishlist.includes(bookId)) {
+            button.classList.add('liked');
+        } else {
+            button.classList.remove('liked');
+        }
+    });
+}
+
+document.getElementById('booksContainer').addEventListener('click', function (e) {
+    if (e.target.classList.contains('wishlist-btn')) {
+        const bookId = e.target.getAttribute('data-id');
+        toggleWishlist(bookId);
+    }
+});
+
+// display wishlist books
+function displayWishlistBooks(bookData) {
+    document.getElementById('wishlist-link').addEventListener('click', function () {
+        const wishlistBooks = bookData.filter(book => wishlist.includes(book.id.toString()));
+        displayBookData(wishlistBooks);
+
+        // hiding searchbar and dropdown
+        const searchBar = document.getElementById("search-bar");
+        const genreFilter = document.getElementById("genre-filter");
+        searchBar.style.display = "none";
+        genreFilter.style.display = "none";
+    });
 }

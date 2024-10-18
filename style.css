@@ -38,3 +38,7 @@ h1 {
     font-size: 1rem;
     margin: 5px 0;
 }
+
+.liked {
+    color: red;
+}
