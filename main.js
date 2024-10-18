@@ -45,6 +45,7 @@ function displayBookData(bookData) {
             <hr>
             <p>Id: ${book.id}</p>
             <button class="wishlist-btn" data-id="${book.id}">❤</button>
+            <a href="bookDetails.html?id=${book.id}" id="">Show Details</a>
         `;
         booksContainer.appendChild(bookDiv);
     });
@@ -57,7 +58,6 @@ function displayBookData(bookData) {
 // search feature
 function search(bookData) {
     // console.log(bookData);
-
     document.getElementById('search-bar').addEventListener("input", function () {
         const searchTerm = this.value.toLowerCase();
         const filteredBooks = bookData.filter(book => book.title.toLowerCase().includes(searchTerm));
@@ -131,9 +131,6 @@ function displayWishlistBooks(bookData) {
 }
 
 // pagination feature
-// const booksPerPage = 10;
-// let currentPage = 1;
-
 function displayPaginatedBooks(bookData, currentPage) {
     const start = (currentPage - 1) * booksPerPage;
     const paginatedBooks = bookData.slice(start, start + booksPerPage);
@@ -156,7 +153,4 @@ function setupPagination(bookData) {
         pagination.appendChild(pageBtn);
     }
 }
-
-// displayPaginatedBooks(allBooks, currentPage);
-// setupPagination(allBooks);
 
