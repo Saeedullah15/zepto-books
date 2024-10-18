@@ -1,3 +1,6 @@
+const booksPerPage = 10;
+let currentPage = 1;
+
 // loading books 
 function loadBookData() {
     fetch("https://gutendex.com/books")
@@ -7,6 +10,8 @@ function loadBookData() {
             search(data.results);
             filter(data.results);
             displayWishlistBooks(data.results);
+            displayPaginatedBooks(data.results, currentPage);
+            setupPagination(data.results);
         })
 }
 loadBookData();
@@ -63,7 +68,6 @@ function search(bookData) {
 // dropdown filter feature
 function filter(bookData) {
     // console.log(bookData);
-
     document.getElementById('genre-filter').addEventListener('change', function () {
         const selectedGenre = this.value;
 
@@ -119,7 +123,40 @@ function displayWishlistBooks(bookData) {
         // hiding searchbar and dropdown
         const searchBar = document.getElementById("search-bar");
         const genreFilter = document.getElementById("genre-filter");
+        const pagination = document.getElementById("pagination");
         searchBar.style.display = "none";
         genreFilter.style.display = "none";
+        pagination.style.display = "none";
     });
 }
+
+// pagination feature
+// const booksPerPage = 10;
+// let currentPage = 1;
+
+function displayPaginatedBooks(bookData, currentPage) {
+    const start = (currentPage - 1) * booksPerPage;
+    const paginatedBooks = bookData.slice(start, start + booksPerPage);
+    displayBookData(paginatedBooks);
+}
+
+function setupPagination(bookData) {
+    const totalPages = Math.ceil(bookData.length / booksPerPage);
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = ''; // Clear previous pagination
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.textContent = i;
+
+        pageBtn.addEventListener('click', function () {
+            currentPage = i;
+            displayPaginatedBooks(bookData, currentPage);
+        });
+        pagination.appendChild(pageBtn);
+    }
+}
+
+// displayPaginatedBooks(allBooks, currentPage);
+// setupPagination(allBooks);
+

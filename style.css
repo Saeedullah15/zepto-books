@@ -42,3 +42,7 @@ h1 {
 .liked {
     color: red;
 }
+
+.active {
+    background-color: blue;
+}
