@@ -38,21 +38,25 @@ function displayBookData(bookData) {
             <img src=${book.formats['image/jpeg']} alt="cover image">
             <div class="bookDiv1">
                 <h2>Title: ${book.title}</h2>
-                <p>Authors Name: ${book.authors.map(author => author.name)}</p>
+                <p>By: ${book.authors.map(author => author.name)}</p>
             </div>
             <hr>
             <div class="genre">
                 <p>Genre: ${genreList}</p>
             </div>
             <hr>
-            <div class="alignment-1">
+            <div class="bookDiv3">
                 <p>Id: ${book.id}</p>
                 <button class="wishlist-btn" data-id="${book.id}">❤</button>
-                <a href="bookDetails.html?id=${book.id}" id="">Show Details</a>
+                <button>
+                    <a href="bookDetails.html?id=${book.id}" id="details">Show Details</a>
+                </button>
             </div>
         `;
         booksContainer.appendChild(bookDiv);
     });
+    // Update wishlist icons after rendering books
+    updateWishlistIcons();
 
     // showing book length
     let bookLength = document.getElementById("bookLength");
@@ -86,6 +90,19 @@ function filter(bookData) {
 // wishlist feature with local-storage
 let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
+// Update the heart icon based on wishlist status
+function updateWishlistIcons() {
+    document.querySelectorAll('.wishlist-btn').forEach(button => {
+        const bookId = button.getAttribute('data-id');
+        if (wishlist.includes(bookId)) {
+            button.classList.add('liked');
+        }
+        else {
+            button.classList.remove('liked');
+        }
+    });
+}
+
 // Function to add/remove book from wishlist
 function toggleWishlist(bookId) {
     if (wishlist.includes(bookId)) {
@@ -95,18 +112,6 @@ function toggleWishlist(bookId) {
     }
     localStorage.setItem('wishlist', JSON.stringify(wishlist));
     updateWishlistIcons();
-}
-
-// Update the heart icon based on wishlist status
-function updateWishlistIcons() {
-    document.querySelectorAll('.wishlist-btn').forEach(button => {
-        const bookId = button.getAttribute('data-id');
-        if (wishlist.includes(bookId)) {
-            button.classList.add('liked');
-        } else {
-            button.classList.remove('liked');
-        }
-    });
 }
 
 document.getElementById('booksContainer').addEventListener('click', function (e) {
@@ -128,11 +133,22 @@ function displayPaginatedBooks(bookData, currentPage) {
 function setupPagination(bookData) {
     const totalPages = Math.ceil(bookData.length / booksPerPage);
     const pagination = document.getElementById('pagination');
+
+    const span = document.createElement("span");
+    span.innerText = "Page: ";
+
     pagination.innerHTML = '';
+    pagination.appendChild(span);
 
     for (let i = 1; i <= totalPages; i++) {
         const pageBtn = document.createElement('button');
+        pageBtn.classList.add("pagination-btn");
         pageBtn.textContent = i;
+
+        // default first page active
+        if (i === 1) {
+            pageBtn.classList.add('active');
+        }
 
         pageBtn.addEventListener('click', function () {
             currentPage = i;
@@ -140,4 +156,15 @@ function setupPagination(bookData) {
         });
         pagination.appendChild(pageBtn);
     }
+
+    // Select all dynamically created buttons
+    const pageButtons = document.querySelectorAll('.pagination-btn');
+
+    // Add event listener to each button for the active class toggle
+    pageButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            pageButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
 }

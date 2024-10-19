@@ -14,6 +14,15 @@ h1 {
     gap: 30px;
 }
 
+#bookDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+}
+
 .book {
     border: 1px solid #ddd;
     padding: 10px;
@@ -32,7 +41,7 @@ h1 {
 }
 
 .book h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: 10px 0;
 }
 
@@ -41,15 +50,24 @@ h1 {
     margin: 5px 0;
 }
 
+.active {
+    background-color: blue;
+    color: white;
+
+}
+
 .liked {
     color: red;
 }
 
-.active {
-    background-color: blue;
+#details,
+.read-btn {
+    text-decoration: none;
+    color: blue;
 }
 
-.alignment-1 {
+.bookDiv3,
+.search-genre-pagination-div {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -73,6 +91,7 @@ h1 {
     background-color: #333;
     color: white;
     margin-bottom: 20px;
+    border-radius: 4px;
 }
 
 .navbar a {
@@ -86,6 +105,10 @@ h1 {
     font-weight: bold;
 }
 
+.navbar .logo a:hover {
+    font-style: italic;
+}
+
 .navbar ul {
     list-style-type: none;
     margin: 0;
@@ -95,6 +118,10 @@ h1 {
 
 .navbar ul li {
     margin-right: 15px;
+}
+
+.menu ul li a:hover {
+    color: cornflowerblue;
 }
 
 .navbar .hamburger {
@@ -112,8 +139,22 @@ h1 {
     display: inline-block;
 }
 
-/* Responsive Navbar styles */
+#search-bar,
+#genre-filter {
+    padding: 6px;
+}
+
+.pagination-btn {
+    margin-left: 5px;
+    padding: 6px 12px;
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
+    body {
+        padding: 5px;
+    }
+
     .navbar ul {
         display: none;
         flex-direction: column;
@@ -123,7 +164,8 @@ h1 {
         right: 0;
         width: 50%;
         z-index: 1;
-        margin-right: 28px;
+        margin-right: 14px;
+        border-radius: 4px;
     }
 
     .navbar ul li {
@@ -133,23 +175,46 @@ h1 {
 
     .navbar .hamburger {
         display: block;
-        /* Show hamburger/close on mobile */
     }
 
     .navbar .menu.active ul {
         display: flex;
         margin-top: 20px;
-        /* Show menu when active */
     }
 
-    /* When menu is active, hide hamburger and show close icon */
     .navbar .menu.active~.hamburger .hamburger-icon {
         display: none;
-        /* Hide hamburger icon */
     }
 
     .navbar .menu.active~.hamburger .close-icon {
         display: inline-block;
-        /* Show close icon */
+    }
+
+    .search-genre-pagination-div {
+        flex-direction: column;
+    }
+
+    .search-genre-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    #search-bar,
+    #genre-filter {
+        width: 100%;
+    }
+
+    #bookDetailsContainer {
+        width: 100%;
+        text-align: justify;
+    }
+
+    #bookDetailsContainer h1,
+    h2 {
+        font-size: 1.2rem;
     }
 }

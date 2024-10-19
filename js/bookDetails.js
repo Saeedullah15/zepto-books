@@ -16,13 +16,15 @@ function displayBookDetails(book) {
     const bookDetailsContainer = document.getElementById('bookDetailsContainer');
 
     bookDetailsContainer.innerHTML = `
-        <h1>${book.title}</h1>
         <img src="${book.formats['image/jpeg']}" alt="">
-        <h2>By: ${book.authors[0].name}</h2>
-        <p>Genre: ${book.subjects ? book.subjects.join(', ') : 'No genres available'}</p>
-        <p>Bookshelves: ${book.bookshelves ? book.bookshelves.join(', ') : 'No additional info'}</p>
+        <h1>Title: ${book.title}</h1>
+        <h2>Authors: ${book.authors[0].name}</h2>
+        <p><strong>Genre:</strong> ${book.subjects ? book.subjects.join(', ') : 'No genres available'}</p>
+        <p><strong>Bookshelves:</strong> ${book.bookshelves ? book.bookshelves.join(', ') : 'No additional info'}</p>
         <p><strong>Book ID:</strong> ${book.id}</p>
-        <a href="${book.formats['text/html']}" target="_blank">Read Book</a>
+        <button>
+            <a href="${book.formats['text/html']}" class="read-btn" target="_blank">Read Book</a>
+        </button>
     `;
 }
 

@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zepto Books</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/8832/8832880.png" type="image/x-icon">
     <!-- css -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -28,38 +30,42 @@
             </div>
         </nav>
 
-        <!-- search bar -->
-        <input type="text" id="search-bar" placeholder="Search by title">
+        <div class="search-genre-pagination-div">
+            <div class="search-genre-div">
+                <!-- search bar -->
+                <input type="text" id="search-bar" placeholder="Search by title">
 
-        <!-- dropdown filter -->
-        <select id="genre-filter">
-            <option value="all">All Genres</option>
-            <option value="Browsing: Fiction">Fiction</option>
-            <option value="Browsing: Science-Fiction & Fantasy">Science-Fiction & Fantasy</option>
-            <option value="Gothic Fiction">Gothic Fiction</option>
-            <option value="Browsing: Literature">Literature</option>
-            <option value="Browsing: Poetry">Poetry</option>
-            <option value="Movie Books">Movie Books</option>
-            <option value="Browsing: Culture/Civilization/Society">Culture/Civilization/Society</option>
-            <option value="Browsing: Gender & Sexuality Studies">Gender & Sexuality Studies</option>
-            <option value="Best Books Ever Listings">Best Books Ever Listings</option>
-            <option value="Harvard Classics">Harvard Classics</option>
-            <option value="Browsing: Humour">Humour</option>
-            <option value="Browsing: Travel & Geography">Travel & Geography</option>
-            <option value="Browsing: Children & Young Adult Reading">Children & Young Adult Reading</option>
-            <option value="Banned Books from Anne Haight's list">Banned Books from Anne Haight's list</option>
-            <option value="Browsing: Biographies">Biography</option>
-            <option value="Browsing: Music">Music</option>
-            <option value="Historical Fiction">Historical Fiction</option>
-            <option value="Browsing: Teaching & Education">Teaching & Education</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Horror">Horror</option>
-            <option value="Browsing: Politics">Politics</option>
-            <option value="Browsing: Psychiatry/Psychology">Psychiatry/Psychology</option>
-        </select>
+                <!-- dropdown filter -->
+                <select id="genre-filter">
+                    <option value="all">All Genres</option>
+                    <option value="Browsing: Fiction">Fiction</option>
+                    <option value="Browsing: Science-Fiction & Fantasy">Science-Fiction & Fantasy</option>
+                    <option value="Gothic Fiction">Gothic Fiction</option>
+                    <option value="Browsing: Literature">Literature</option>
+                    <option value="Browsing: Poetry">Poetry</option>
+                    <option value="Movie Books">Movie Books</option>
+                    <option value="Browsing: Culture/Civilization/Society">Culture/Civilization/Society</option>
+                    <option value="Browsing: Gender & Sexuality Studies">Gender & Sexuality Studies</option>
+                    <option value="Best Books Ever Listings">Best Books Ever Listings</option>
+                    <option value="Harvard Classics">Harvard Classics</option>
+                    <option value="Browsing: Humour">Humour</option>
+                    <option value="Browsing: Travel & Geography">Travel & Geography</option>
+                    <option value="Browsing: Children & Young Adult Reading">Children & Young Adult Reading</option>
+                    <option value="Banned Books from Anne Haight's list">Banned Books from Anne Haight's list</option>
+                    <option value="Browsing: Biographies">Biography</option>
+                    <option value="Browsing: Music">Music</option>
+                    <option value="Historical Fiction">Historical Fiction</option>
+                    <option value="Browsing: Teaching & Education">Teaching & Education</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Browsing: Politics">Politics</option>
+                    <option value="Browsing: Psychiatry/Psychology">Psychiatry/Psychology</option>
+                </select>
+            </div>
 
-        <!-- pagination -->
-        <div id="pagination"></div>
+            <!-- pagination -->
+            <div id="pagination"></div>
+        </div>
     </header>
 
     <main>
@@ -70,13 +76,11 @@
         </section>
     </main>
 
-    <footer>
-
-    </footer>
+    <footer></footer>
 
     <!-- js -->
-    <script src="main.js"></script>
-    <script src="navbar.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/navbar.js"></script>
 </body>
 
 </html>
