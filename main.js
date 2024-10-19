@@ -7,8 +7,8 @@ function loadBookData() {
         .then(res => res.json())
         .then(data => {
             displayBookData(data.results);
-            search(data.results);
-            filter(data.results);
+            // search(data.results);
+            // filter(data.results);
             displayPaginatedBooks(data.results, currentPage);
             setupPagination(data.results);
         })
@@ -36,14 +36,20 @@ function displayBookData(bookData) {
 
         bookDiv.innerHTML = `
             <img src=${book.formats['image/jpeg']} alt="cover image">
-            <h2>Title: ${book.title}</h2>
-            <p>Authors Name: ${book.authors.map(author => author.name)}</p>
+            <div class="bookDiv1">
+                <h2>Title: ${book.title}</h2>
+                <p>Authors Name: ${book.authors.map(author => author.name)}</p>
+            </div>
             <hr>
-            <p>Genre: ${genreList}</p>
+            <div class="genre">
+                <p>Genre: ${genreList}</p>
+            </div>
             <hr>
-            <p>Id: ${book.id}</p>
-            <button class="wishlist-btn" data-id="${book.id}">❤</button>
-            <a href="bookDetails.html?id=${book.id}" id="">Show Details</a>
+            <div class="alignment-1">
+                <p>Id: ${book.id}</p>
+                <button class="wishlist-btn" data-id="${book.id}">❤</button>
+                <a href="bookDetails.html?id=${book.id}" id="">Show Details</a>
+            </div>
         `;
         booksContainer.appendChild(bookDiv);
     });
@@ -115,6 +121,8 @@ function displayPaginatedBooks(bookData, currentPage) {
     const start = (currentPage - 1) * booksPerPage;
     const paginatedBooks = bookData.slice(start, start + booksPerPage);
     displayBookData(paginatedBooks);
+    search(paginatedBooks);
+    filter(paginatedBooks);
 }
 
 function setupPagination(bookData) {
@@ -133,4 +141,3 @@ function setupPagination(bookData) {
         pagination.appendChild(pageBtn);
     }
 }
-

@@ -12,9 +12,20 @@
 <body>
     <header>
         <!-- nav bar -->
-        <nav>
-            <a href="index.html" id="home-link">Home</a>
-            <a href="wishlist.html" id="">Wishlist</a>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">Zepto Books</a>
+            </div>
+            <div class="menu" id="navbarMenu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="wishlist.html">Wishlist</a></li>
+                </ul>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="hamburger-icon">&#9776;</span>
+                <span class="close-icon">&times;</span>
+            </div>
         </nav>
     </header>
 
@@ -30,6 +41,7 @@
 
     <!-- js -->
     <script src="wishlist.js"></script>
+    <script src="navbar.js"></script>
 </body>
 
 </html>
